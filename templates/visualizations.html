@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/visualizations.css') }}" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main-col" style="background-color: white;">
+        <div class="content">
+            <div class="header">
+                <div class="title">
+                    <button class="button" role="button" onclick="location.href='/'"">Go Back</button>
+                    <h1>Scores</h1>
+                    <div class="table">
+                        <div class="row header">
+                            <div class="cell">
+                                Model
+                            </div>
+                            <div class="cell">
+                                MAE
+                            </div>
+                            <div class="cell">
+                                R2
+                            </div>
+                            <div class="cell">
+                                RMSLE
+                            </div>
+                        </div>
+                        {%for score in scores%}
+                        <div class="row">
+                            <div class="cell">
+                                {{score[0]}}
+                            </div>
+                            <div class="cell">
+                                {{score[1]}}
+                            </div>
+                            <div class="cell">
+                                {{score[2]}}
+                            </div>
+                            <div class="cell">
+                                {{score[3]}}
+                            </div>
+                        </div>
+                        {%endfor%}
+                    </div>
+                    <br/>
+                    <h1>Visualizations</h1>
+                    <p>Percentage of data used for visualizations: <span id="demo"></span></p>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="100" class="slider" id="myRange">
+                    </div>
+                    <p><i>(Data will be chosen randomly)</i></p>
+                    <br/>
+                    <p><button id="refreshbutton" class="button" role="button">Refresh</button></p>
+                    <br/>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="main-col">
+        
+    </div>
+    <div class="content" style="margin: 0 clamp(1rem, 10vw, 50rem);">
+        {%for plot in plots%}
+        <div class="card">
+            <h3 style="padding-left: 2rem;">{{plot.name}}</h3>
+            <img src="data:image/png;base64, {{ plot.plot_url }}">
+        </div>
+        {%endfor%}
+
+    </div>
+</body>
+<script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value; // Display the default slider value
+
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+
+    document.getElementById("refreshbutton").onclick = function() {
+        location.href='/visualize?percentage='+slider.value;
+    }
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const perc =  urlSearchParams.get('percentage');
+    if (perc) {
+        slider.value = perc;
+        output.innerHTML = perc;
+    }
+</script>
+</html>

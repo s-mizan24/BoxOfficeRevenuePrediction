@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles/home.css') }}"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="hero-image">
+      <div class="hero-text">
+        <h1>TMDB Box Office Revenue Prediction</h1>
+        <p>Predicting Box Office Revenues Using Machine Learning</p>
+        <div>
+          <!-- <button class="button" role="button" onclick="location.href='/predict'"" style="margin-right: 2rem;">Prediction</button> -->
+          <button class="button" role="button" onclick="location.href='/visualize'"">Visualizations</button>
+        </div>
+      </div>
+    </div>
+    <div class="main-col">
+      <div class="content">
+        <h1>Introduction</h1>
+        <p>The objective of this project is to produce a machine learning model that can help us predict the revenue for an upcoming movie. These predictions will help investors and producers to make good decisions about investing in a movie. We recommend a machine learning approach that can help producers to view these decisions from a technical and statistical viewpoint.</p>
+        <h1>Background</h1>
+        <p>Box office revenue predictions is an important field of study for the film industry. It helps producers, investors and other stakeholders in determining whether it is feasible to invest their time and effort into a project.
+          Some existing solutions use very little data about the movies. Other solutions use NLP and reviews to predict the revenue. We will use a variety of machine learning techniques and determine which one is the most suitable for prediction.
+          We will use genres, popularity, production companies, and other data points in our prediction. These terms are very common as most people are well accustomed to the film industry.
+          </p>
+        <h1>Data Source</h1>
+        <p>
+          We are using the dataset from the following kaggle link <br>
+          <a href="https://www.kaggle.com/c/tmdb-box-office-prediction/data">TMDB Box Office Prediction</a>
+        </p>
+        <h1>Data Analysis</h1>
+        <p>We applied correlation coeffections and such to find the most suitable metrics for our prediction. Some of the most important independent variables were release year and popularity rating.</p>
+
+        <h1>Visualizations</h1>
+        <p>For the visualizations, we created a number of scatter plots and box plots to see which the impact of different variables on the prediction. This visualizations include a scatterplot of revenue vs price, revenue vs release year, revenue vs release month and many others. These visualizations are included in the website.</p>
+      </div>
+    </div>
+  </body>
+</html>
